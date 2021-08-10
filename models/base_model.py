@@ -19,6 +19,7 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
+        print(kwargs)
         if not kwargs:
             from models import storage
             self.id = str(uuid.uuid4())
@@ -34,8 +35,13 @@ class BaseModel:
             self.__dict__.update(kwargs)
 
         for key, value in kwargs.items():
-            setattr(self, key, value)
+
+            if key in self.__dict__.keys():
+                continue
+            else:
+                setattr(self, key, value)
         print(self.to_dict())
+
 
     def __str__(self):
         """Returns a string representation of the instance"""
