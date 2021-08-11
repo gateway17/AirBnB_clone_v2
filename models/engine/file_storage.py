@@ -63,3 +63,8 @@ class FileStorage:
             for element in my_list:
                 if obj.id in element:
                     del FileStorage.__objects[element]
+
+    @property
+    def cities(self):
+        print("getter method called")
+        return self._age
