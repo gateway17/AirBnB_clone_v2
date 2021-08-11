@@ -13,11 +13,11 @@ class FileStorage:
         if cls is not None:
             new_dict = {}
             for key, value in FileStorage.__objects.items():
-                if cls.name in key:
+                if cls.__name__ in key:
                     new_dict[key] = value
-            print("returning new_dict")
             return new_dict
-        return FileStorage.__objects
+        else:
+            return FileStorage.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -63,8 +63,3 @@ class FileStorage:
             for element in my_list:
                 if obj.id in element:
                     del FileStorage.__objects[element]
-
-    @property
-    def cities(self):
-        print("getter method called")
-        return self._age
