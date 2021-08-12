@@ -24,6 +24,3 @@ class State(BaseModel, Base):
             if self.id == value.state_id:
                 cities_isinstance.append(value)
         return(cities_isinstance)
-
-    cities = relationship("City", back_populates="state")
-# if getenv(HBNB_TYPE_STORAGE) != "db":
