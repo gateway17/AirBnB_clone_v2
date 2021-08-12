@@ -22,7 +22,8 @@ class State(BaseModel, Base):
         obj_dict = storage.all(City)
         for key, value in obj_dict.items():
             if self.id == value.state_id:
-               cities_isinstance.append(value)
+                cities_isinstance.append(value)
         return(cities_isinstance)
 
+    cities = relationship("City", back_populates="state")
 # if getenv(HBNB_TYPE_STORAGE) != "db":
