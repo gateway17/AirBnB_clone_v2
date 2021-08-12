@@ -117,9 +117,9 @@ class HBNBCommand(cmd.Cmd):
         """ Create an object of any class"""
         arguments = args.split(' ')
         temp_list = []
-        for index in range(1, len(arguments)):
-            if arguments[index].find('=') != - 1:
-                temp_list.append(arguments[index])
+        for element in arguments:
+            if element.find('=') != - 1:
+                temp_list.append(element)
 
         if not arguments[0]:
             print("** class name missing **")
@@ -137,17 +137,18 @@ class HBNBCommand(cmd.Cmd):
             if hasattr(new_instance, separe_argument[0]) \
                 and separe_argument[1][0] == '"' \
                     and separe_argument[1][-1] == '"':
-                if separe_argument[1][1:-1].find('"') or \
-                        separe_argument[1][1:-1].find('_'):
-                    quote_scape = separe_argument[1][1:-1]
-                    quote_scape = quote_scape.replace('"', '\\"')
-                    quote_scape = quote_scape.replace('_', ' ')
-            elif "." in separe_argument[1]:
-                quote_scape = float(separe_argument[1])
-            else:
-                quote_scape = int(separe_argument[1])
 
-            setattr(new_instance, separe_argument[0], quote_scape)
+                parcial_argument = separe_argument[1][1:-1]
+                if parcial_argument.find('"'):
+                    parcial_argument = parcial_argument.replace('"', '\\"')
+                if parcial_argument.find('_'):
+                    parcial_argument = parcial_argument.replace('_', ' ')
+            elif "." in separe_argument[1]:
+                parcial_argument = float(separe_argument[1])
+            else:
+                parcial_argument = int(separe_argument[1])
+
+            setattr(new_instance, separe_argument[0], parcial_argument)
 
         storage.save()
         print(new_instance.id)
