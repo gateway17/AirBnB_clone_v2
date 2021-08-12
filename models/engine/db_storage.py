@@ -78,5 +78,5 @@ class DBStorage():
         from models.review import Review
 
         Base.metadata.create_all(self.__engine)
-        self.session = scoped_session(sessionmaker(
+        self.__session = scoped_session(sessionmaker(
             expire_on_commit=False, bind=self.__engine))
