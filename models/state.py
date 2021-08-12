@@ -11,6 +11,7 @@ from models.city import City
 
 class State(BaseModel, Base):
     """ State class """
+    name = ""
 
     __tablename__ = "states"
     name = Column(String(128), nullable=False)
