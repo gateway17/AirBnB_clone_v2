@@ -69,13 +69,14 @@ class DBStorage():
 
     def reload(self):
         """create all tables in the database (feature of SQLAlchemy)"""
-        from ..state import State, Base
-        from ..city import City
-        from ..user import User
-        from ..place import Place
-        from ..review import Review
-        from ..amenity import Amenity
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.place import Place
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.review import Review
 
         Base.metadata.create_all(self.__engine)
-        self.session = scoped_session(sessionmaker(
+        self.__session = scoped_session(sessionmaker(
             expire_on_commit=False, bind=self.__engine))
